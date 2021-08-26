@@ -17,7 +17,7 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-.barra-superior {
+header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,37 +32,37 @@ body {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
 }
 
-.barra-superior h1 {
+header h1 {
   font-family: "Righteous", cursive;
   font-size: 44px;
   margin-bottom: 5px;
   margin-left: 20px;
 }
 
-.barra-superior h2 {
+header h2 {
   font-size: 18px;
   margin-left: 20px;
 }
 
-.container-conteudo {
+main {
   margin: 110px 20px 110px 20px;
 }
 
-.titulo-lista {
+.list-title {
   font-family: "Righteous", cursive;
   font-size: 26px;
   color: #333333;
   margin-bottom: 10px;
 }
 
-.lista {
+.list {
   display: flex;
   flex-shrink: 0;
   overflow-x: scroll;
   margin-bottom: 35px;
 }
 
-.lista li {
+.list li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -81,29 +81,29 @@ body {
   border: 4px solid #32b72f;
 }
 
-.lista li img {
+.list li img {
   margin-top: 10px;
   width: 144px;
   height: 87px;
   border-radius: 5px;
 }
 
-.lista li h1 {
+.list li h1 {
   font-size: 16px;
   font-weight: bold;
 }
 
-.lista li h2 {
+.list li h2 {
   font-size: 15px;
   color: #a6a6a6;
 }
 
-.lista li h3 {
+.list li h3 {
   font-size: 16px;
   margin-bottom: 10px;
 }
 
-.botao-selecao {
+.checkmark {
   position: absolute;
   bottom: 10px;
   right: 10px;
