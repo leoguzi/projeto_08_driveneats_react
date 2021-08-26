@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 export default function App() {
@@ -5,6 +6,7 @@ export default function App() {
     <>
       <Header></Header>
       <Main></Main>
+      <Footer></Footer>
     </>
   );
 }

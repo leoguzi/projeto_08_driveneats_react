@@ -5,8 +5,9 @@ export default function List(props) {
     <>
       <h1 className="list-title">{title}</h1>
       <ul className={className}>
-        {itens.map((item) => (
+        {itens.map((item, index) => (
           <Item
+            key={index}
             category={item.category}
             image={item.image}
             image_alt={item.image_alt}
