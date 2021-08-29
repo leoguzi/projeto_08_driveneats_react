@@ -1,4 +1,7 @@
 import List from "../lists/List";
+import React from "react";
+import Footer from "./Footer";
+import Header from "./Header";
 const lists = [
   {
     title: "Primeiro, seu prato",
@@ -93,7 +96,7 @@ const lists = [
         category: "dessert",
         image: "assets/brownie.jpg",
         image_alt: "brownie",
-        title: "brownie",
+        title: "Brownie",
         subtitle: "IPorque o bom e velho bolo de chocolate ficou obsoleto :/",
         price: "10,00",
       },
@@ -117,17 +120,61 @@ const lists = [
   },
 ];
 
+let order = []; //gets updated everytime the user interacts with the layout.
 export default function Main() {
+  const [itensQty, setItensQty] = React.useState(0);
+  const updateOrder = (newItem) => {
+    let exists = false;
+    if (newItem.qty === 0) {
+      order = order.filter((item) => {
+        //using a combination of title+id because ids are not unique :(
+        if (item.id === newItem.id && item.title === newItem.title) {
+          return false;
+        }
+        return true;
+      });
+      setItensQty(itensQty - 1);
+    }
+    order.forEach((item) => {
+      if (item.category === newItem.category && item.id === newItem.id) {
+        item.qty = newItem.qty;
+        setItensQty(itensQty + 1);
+        exists = true;
+      }
+    });
+    if (!exists && newItem.qty > 0) {
+      order.push(newItem);
+      setItensQty(itensQty + 1);
+    }
+    checkOrder();
+  };
+
+  const [isCheckoutReady, setIsCheckoutReady] = React.useState(false);
+
+  const checkOrder = () => {
+    const dishes = order.filter((item) => item.category === "dish");
+    const beverages = order.filter((item) => item.category === "beverage");
+    const desserts = order.filter((item) => item.category === "dessert");
+    dishes.length > 0 && beverages.length > 0 && desserts.length > 0
+      ? setIsCheckoutReady(true)
+      : setIsCheckoutReady(false);
+  };
+
   return (
-    <main>
-      {lists.map((list, index) => (
-        <List
-          key={index}
-          title={list.title}
-          className={list.class}
-          itens={list.itens}
-        ></List>
-      ))}
-    </main>
+    <>
+      <Header />
+      <main>
+        {lists.map((list, index) => (
+          <List
+            key={index}
+            title={list.title}
+            className={list.class}
+            itens={list.itens}
+            updateOrder={updateOrder}
+          ></List>
+        ))}
+      </main>
+      <Footer isCheckoutReady={isCheckoutReady} orderData={order} />
+    </>
   );
 }
