@@ -20,7 +20,6 @@ export default function Item({
     counter: "qty-selector hidden",
   };
   const [itemStyle, setItemStyle] = React.useState(notSelected);
-
   const orderInfo = {
     //information used to update the order
     id: id,
